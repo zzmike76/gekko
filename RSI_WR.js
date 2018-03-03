@@ -52,17 +52,17 @@ method.check = function(candle) {
   if(rsiVal > this.settings.high && wr > this.settings.up) {
 
       this.advice('short');
-      if( this.debug ) log.debug('Going short, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal);
+      log.debug('Going short, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal);
 
   } else if(rsiVal < this.settings.low && wr < this.settings.down) {
 
    
       this.advice('long');
-      if( this.debug ) log.debug('Going long, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal+  ' stoploss at ' + this.stop.toFixed(4)) ;
+      log.debug('Going long, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal ) ;
 
   } 
     else {
-      if( this.debug ) log.debug('Doing nothing!');
+      log.debug('Doing nothing!');
       this.advice();
     }
   
