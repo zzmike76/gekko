@@ -13,7 +13,6 @@
 var _ = require('lodash');
 var log = require('../core/log.js');
 var RSI = require('./indicators/RSI.js');
-this.stop = "";
 
 // let's create our own method
 var method = {};
@@ -53,30 +52,21 @@ method.check = function(candle) {
   if(rsiVal > this.settings.high && wr > this.settings.up) {
 
       this.advice('short');
-      this.stop = "";
       if( this.debug ) log.debug('Going short, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal);
 
   } else if(rsiVal < this.settings.low && wr < this.settings.down) {
 
    
       this.advice('long');
-      this.stop = candle.close * this.settings.stoploss;
       if( this.debug ) log.debug('Going long, ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal+  ' stoploss at ' + this.stop.toFixed(4)) ;
 
-  } else {
-    if(candle.close < this.stop && this.settings.stop){
-      if( this.debug ) log.debug('Stop loss triggered !!! ' + "WR: " + wr.toFixed(2) + ' RSI: ' + rsiVal + ' Stoploss: ' + this.stop.toFixed(4) + ' Price: ' + candle.close);
-      this.advice('short');
-      this.stop = "";
-
-    }
-    
+  } 
     else {
       if( this.debug ) log.debug('Doing nothing!');
       this.advice();
     }
   
   }
-}
+
 
 module.exports = method;
