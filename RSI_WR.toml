@@ -1,0 +1,8 @@
+interval = 14
+low = 30
+high = 70
+up = -90
+down = -10
+optInTimePeriod = 10
+stoploss = 0.95
+stop = false
